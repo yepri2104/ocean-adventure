@@ -1180,7 +1180,59 @@ window.restartGame = function(){
 
   playButtonSound();
 
-  location.reload();
+  // RESET GAME STATE
+  gamePaused = false;
+  gameOver = false;
+  gameStarted = true;
+
+  // RESET SCORE
+  score = 0;
+
+  // RESET PLAYER
+  player.hp = 100;
+
+  player.x = 500;
+  player.y = 500;
+
+  player.hurt = false;
+  player.hurtTimer = 0;
+
+  // RESET OBJECT
+  coins = [];
+  diamonds = [];
+  hearts = [];
+  sharks = [];
+  jellyfish = [];
+  fishes = [];
+
+  // SPAWN ULANG
+  spawnObjects();
+
+  // RESET UI
+  document.getElementById("hp").innerText = 100;
+  document.getElementById("score").innerText = 0;
+
+  // HIDE PANEL
+  document.getElementById(
+    "pauseMenu"
+  ).classList.add("hidden");
+
+  document.getElementById(
+    "gameOverScreen"
+  ).style.display = "none";
+
+  document.getElementById(
+    "startScreen"
+  ).style.display = "none";
+
+  document.getElementById(
+    "pauseBtn"
+  ).style.display = "block";
+
+  // MUSIC
+  bgMusic.currentTime = 0;
+
+  bgMusic.play().catch(()=>{});
 
 };
 
